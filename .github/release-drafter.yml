@@ -1,0 +1,77 @@
+name-template: $RESOLVED_VERSION
+tag-template: v$RESOLVED_VERSION
+change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
+version-resolver:
+  major:
+    labels:
+      - major
+  minor:
+    labels:
+      - minor
+  patch:
+    labels:
+      - patch
+  default: patch
+categories:
+  - title: ':rocket: Features'
+    label: feat
+  - title: ':bug: Bug Fixes'
+    label: fix
+  - title: ':racehorse: Performance'
+    label: perf
+  - title: ':computer: Developer Changes'
+    labels:
+      - chore
+      - refactor
+      - style
+      - test
+  - title: ':pencil: Documentation'
+    labels:
+      - docs
+  - title: ':wrench: DevOps'
+    labels:
+      - ci
+      - build
+exclude-labels:
+  - skip-changelog
+replacers:
+  # Strip semantic PR title prefixes
+  - search: /(build|ci|chore|docs|feat|fix|perf|refactor|style|test)\((\w+)\):\s?/g
+    replace: "$2: "
+  - search: /(build|ci|chore|docs|feat|fix|perf|refactor|style|test):\s?/g
+    replace: ""
+autolabeler:
+  - label: minor
+    title:
+      - /^feat/
+  - label: feat
+    title:
+      - /^feat/
+  - label: fix
+    title:
+      - /^fix/
+  - label: perf
+    title:
+      - /^perf/
+  - label: chore
+    title:
+      - /^chore/
+  - label: style
+    title:
+      - /^style/
+  - label: test
+    title:
+      - /^test/
+  - label: refactor
+    title:
+      - /^refactor/
+  - label: ci
+    title:
+      - /^ci/
+  - label: build
+    title:
+      - /^build/
+  - label: docs
+    title:
+      - /^docs/
+template: $CHANGES

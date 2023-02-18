@@ -1,0 +1,56 @@
+[tool.coverage.run]
+branch = true
+source = [".",]
+omit = [
+    ".venv/*",
+    "venv/*",
+    "*/virtualenvs/*",
+    "*/node_modules/*",
+    "htmlcov/*",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+ignore_errors = true
+exclude_lines = [
+    # Have to re-enable the standard pragma
+    "pragma: no cover",
+
+    # Don't complain about missing debug-only code:
+    "def __repr__",
+    "if self.debug",
+
+    "abc.abstractmethod",
+
+    # Don't complain if tests don't hit defensive assertion code:
+    "raise AssertionError",
+    "raise NotImplementedError",
+
+    # Don't complain if non-runnable code isn't run:
+    "if 0:",
+    "if __name__ == \"__main__\":",
+]
+
+[tool.isort]
+profile = "black"
+order_by_type = true
+skip_glob = ["venv/*"]
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+
+[tool.black]
+line-length = 88
+target-version = ["py39"]
+exclude = '''
+/(
+        \.git
+      | \.hg
+      | \.mypy_cache
+      | \.tox
+      | venv
+      | _build
+      | buck-out
+      | build
+      | dist
+)/
+'''
