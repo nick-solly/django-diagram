@@ -30,6 +30,18 @@ class App:
             FirstToSecondCardinality.EXACTLY_ONE,
             SecondToFirstCardinality.EXACTLY_ONE,
         ),
+        "TreeForeignKey": (
+            FirstToSecondCardinality.ONE_OR_MORE,
+            SecondToFirstCardinality.EXACTLY_ONE,
+        ),
+        "TreeManyToManyField": (
+            FirstToSecondCardinality.ONE_OR_MORE,
+            SecondToFirstCardinality.ONE_OR_MORE,
+        ),
+        "TreeOneToOneField": (
+            FirstToSecondCardinality.EXACTLY_ONE,
+            SecondToFirstCardinality.EXACTLY_ONE,
+        ),
     }
 
     DEFAULT_TITLE = "Django ER Diagram"
